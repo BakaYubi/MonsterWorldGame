@@ -3,6 +3,7 @@
 #include <time.h>
 #include "ObjTest.h"
 #include "Human.h"
+#include "Tuman.h"
 
 void main()
 {
@@ -42,7 +43,8 @@ void main()
 		game.add(new Jiangshi("못먹어세로", "↕", rand() % w, rand() % h, false));
 	}
 
-	game.add(new Human("슈퍼인간","♣", rand() % w, rand() % h));
+	game.add(new Tuman("미래의좌파", "좌", rand() % w, rand() % h));
+	game.add(new Tuman("미래의우파", "우", rand() % w, rand() % h));
 
 	game.play(500, 100);
 	printf("------게임 종료-------------------\n");

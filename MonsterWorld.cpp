@@ -1,5 +1,7 @@
 #include "MonsterWorld.h"
 #include "VariousMonster.h"
+#include <conio.h>
+#include "Tuman.h"
 
 bool MonsterWorld::isDone()
 {
@@ -69,9 +71,18 @@ void MonsterWorld::play(int maxwalk, int wait) {
 	cerr << " ¿£ÅÍ¸¦ ´©¸£¼¼¿ä...";
 	getchar();
 	for (int i = 0; i < maxwalk; i++) {
-		for (int k = 0; k < nMon; k++) {
+		for (int k = 0; k < nMon-2; k++) {
 			//	mon[k].move(map, xMax, yMax);
 			pMon[k]->move(world.Data(), xMax, yMax);
+		}
+		if (_kbhit()) {
+			unsigned char ch = getche();
+			if (ch == 224) {
+				ch = getche();
+				((Tuman*)pMon[nMon - 1])->move(world.Data(), xMax, yMax, ch);
+			}
+			else
+				((Tuman*)pMon[nMon - 2])->move(world.Data(), xMax, yMax, ch);
 		}
 		nMove++;
 		print();
@@ -83,6 +94,23 @@ void MonsterWorld::play(int maxwalk, int wait) {
 
 void MonsterWorld::checkEnergy()
 {
+	//if (pMon[nMon - 2]->getEnergy() == 0) {
+	//	string str = pMon[nMon - 2]->getName();
+	//	cout << "\t" << str << " Monster°¡ ±¾¾î Á×¾ú½À´Ï´Ù." << endl;
+	//	system("pause");
+	//	delete pMon[nMon - 2];
+	//	pMon[nMon - 2] = nullptr;
+	//	nMon--;
+	//}
+	//if (pMon[nMon - 1]->getEnergy() == 0) {
+	//	string str = pMon[nMon - 1]->getName();
+	//	cout << "\t" << str << " Monster°¡ ±¾¾î Á×¾ú½À´Ï´Ù." << endl;
+	//	system("pause");
+	//	delete pMon[nMon - 1];
+	//	pMon[nMon - 1] = nullptr;
+	//	nMon--;
+	//}
+
 	for (size_t i = 0; i < nMon; i++)
 	{
 		if (pMon[i]->getEnergy() == 0) {
@@ -90,7 +118,9 @@ void MonsterWorld::checkEnergy()
 			cout << "\t" << str << " Monster°¡ ±¾¾î Á×¾ú½À´Ï´Ù." << endl;
 			delete pMon[i];
 			if (i != (nMon - 1)) {
-				pMon[i] = pMon[nMon - 1];
+				pMon[i] = pMon[nMon - 3];
+				pMon[nMon - 3] = pMon[nMon - 2];
+				pMon[nMon - 2] = pMon[nMon - 1];
 			}
 			nMon--;
 		}
