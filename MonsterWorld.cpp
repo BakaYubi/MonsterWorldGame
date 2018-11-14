@@ -65,42 +65,20 @@ void MonsterWorld::add(Monster* m) {
 }
 #include <assert.h>
 void MonsterWorld::play(int maxwalk, int wait) {
-		print();
-		cerr << " 엔터를 누르세요...";
-		getchar();
-		for (int i = 0; i < maxwalk; i++) {
-//			for (int k = 0; k < nMon; k++)
-	//			mon[k].move(map, xMax, yMax);
-//				pMon[k]->move(world.Data(), xMax, yMax);
-
-			/*
-			((Zombie*)pMon[0])->move(world.Data(), xMax, yMax);   // 형변환이 필요함
-			((Vampire*)pMon[1])->move(world.Data(), xMax, yMax);
-			((KGhost*)pMon[2])->move(world.Data(), xMax, yMax);
-			((Smombi*)pMon[3])->move(world.Data(), xMax, yMax);
-			((SuperSmombi*)pMon[4])->move(world.Data(), xMax, yMax);
-			((Jiangshi*)pMon[5])->move(world.Data(), xMax, yMax);
-			((Jiangshi*)pMon[6])->move(world.Data(), xMax, yMax);
-			*/
-
-			for (size_t i = 0; i < nMon; i++)
-			{
-				pMon[i]->move(world.Data(), xMax, yMax);
-
-			}
-
-
-			for (size_t i = 0; i < nMon; i++)
-			{
-				(pMon[i])->move(world.Data(), xMax, yMax);
-			}
-			nMove++;
-			print();
-			checkEnergy();
-			if (isDone()) break;
-			Sleep(wait);
+	print();
+	cerr << " 엔터를 누르세요...";
+	getchar();
+	for (int i = 0; i < maxwalk; i++) {
+		for (int k = 0; k < nMon; k++) {
+			//	mon[k].move(map, xMax, yMax);
+			pMon[k]->move(world.Data(), xMax, yMax);
 		}
-		
+		nMove++;
+		print();
+		checkEnergy();
+		if (isDone()) break;
+		Sleep(wait);
+	}
 }
 
 void MonsterWorld::checkEnergy()
@@ -115,7 +93,6 @@ void MonsterWorld::checkEnergy()
 				pMon[i] = pMon[nMon - 1];
 			}
 			nMon--;
-			system("pause");
 		}
 	}
 }
