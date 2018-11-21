@@ -4,7 +4,7 @@
 #include "Matrix.h"
 #include <windows.h>
 #define DIM  40
-#define MAXMONS 6
+#define MAXMONS 8
 
 class MonsterWorld {
 //	int map[DIM][DIM];      // MonsterWorld 객체 생성시 map[40][40] 메모리 할당

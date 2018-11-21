@@ -56,13 +56,13 @@ void SuperSmombi::move(int ** map, int maxx, int maxy)
 		x += jump; y+=jump;
 		break;
 	case 1:
-		x += jump; y += jump;
+		x += jump; y -= jump;
 		break;
 	case 2:
-		x += jump; y += jump;
+		x -= jump; y += jump;
 		break;
 	case 3:
-		x += jump; y += jump;
+		x -= jump; y -= jump;
 		break;
 	}
 	clip(maxx, maxy);
