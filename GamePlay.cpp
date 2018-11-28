@@ -2,6 +2,7 @@
 #include "VariousMonster.h"
 #include <time.h>
 #include "ObjTest.h"
+#include "Human.h"
 
 void main()
 {
@@ -40,6 +41,11 @@ void main()
 	else {
 		game.add(new Jiangshi("못먹어세로", "↕", rand() % w, rand() % h, false));
 	}
+
+	// game.add(new Human("슈퍼인간","♣", rand() % w, rand() % h));
+	game.add(new Human("인간좌키", "♣", rand() % w, rand() % h));
+	//game.add(new Human("인간우키", "♧", rand() % w, rand() % h));
+
 
 	game.play(500, 100);
 	printf("------게임 종료-------------------\n");
