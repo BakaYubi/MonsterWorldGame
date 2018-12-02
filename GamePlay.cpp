@@ -44,7 +44,7 @@ void main()
 
 	// game.add(new Human("슈퍼인간","♣", rand() % w, rand() % h));
 	game.add(new Human("인간좌키", "♣", rand() % w, rand() % h));
-	game.add(new Human("인간우키", "♧", rand() % w, rand() % h));
+	//game.add(new Human("인간우키", "♧", rand() % w, rand() % h));
 
 
 	game.play(500, 100);

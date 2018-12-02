@@ -1,70 +1,81 @@
 #include "VariousMonster.h"
 
 void Vampire::move(int** map, int maxx, int maxy) {
-	int dir = rand() % 4;
-	if (dir == 0) x--;
-	else if (dir == 1) x++;
-	else if (dir == 2) y--;
-	else y++;
-	clip(maxx, maxy);
-	eat(map);
+	if (!isSleep()) {
+		int dir = rand() % 4;
+		if (dir == 0) p[0]--;
+		else if (dir == 1) p[0]++;
+		else if (dir == 2) p[1]--;
+		else p[1]++;
+		clip(maxx, maxy);
+		eat(map);
+	}
 }
 
 void KGhost::move(int** map, int maxx, int maxy) {
-	x = rand() % maxx;
-	y = rand() % maxy;
-	clip(maxx, maxy);
-	eat(map);
+	if (!isSleep()) {
+		p = Point(rand() % maxx, rand() % maxy);
+		//p[0] = rand() % maxx;
+		//p[1] = rand() % maxy;
+		clip(maxx, maxy);
+		eat(map);
+	}
 }
 
 void Jiangshi::move(int** map, int maxx, int maxy) {
-	int dir = rand() % 2;
-	int jump = rand() % 5 + 1;      // 2 -> 5
-	if (bHori) x += ((dir == 0) ? -jump : jump);
-	else y += ((dir == 0) ? -jump : jump);
-	clip(maxx, maxy);
-	eat(map);
+	if (!isSleep()) {
+		int dir = rand() % 2;
+		int jump = rand() % 5 + 1;      // 2 -> 5
+		if (bHori) p[0] += ((dir == 0) ? -jump : jump);
+		else p[1] += ((dir == 0) ? -jump : jump);
+		clip(maxx, maxy);
+		eat(map);
+	}
 }
 
 void Smombi::move(int ** map, int maxx, int maxy)
 {
-	int dir = rand() % 4;
-	switch (dir) {
-	case 0:
-		x++; y++;
-		break;
-	case 1:
-		x++; y--;
-		break;
-	case 2:
-		x--; y--;
-		break;
-	case 3:
-		x--; y++;
-		break;
+	if (!isSleep()) {
+		int dir = rand() % 4;
+		switch (dir) {
+		case 0:
+			p[0]++; p[1]++;
+			break;
+		case 1:
+			p[0]++; p[1]--;
+			break;
+		case 2:
+			p[0]--; p[1]--;
+			break;
+		case 3:
+			p[0]--; p[1]++;
+			break;
+		}
+		clip(maxx, maxy);
+		eat(map);
 	}
-	clip(maxx, maxy);
-	eat(map);
 }
 
 void SuperSmombi::move(int ** map, int maxx, int maxy)
 {
-	int dir = rand() % 4;
-	int jump = 1 + rand() % 5;
-	switch (dir) {
-	case 0:
-		x += jump; y+=jump;
-		break;
-	case 1:
-		x += jump; y -= jump;
-		break;
-	case 2:
-		x -= jump; y += jump;
-		break;
-	case 3:
-		x -= jump; y -= jump;
-		break;
+	if (!isSleep()) {
+		int dir = rand() % 4;
+		int jump = 1 + rand() % 5;
+		switch (dir) {
+		case 0:
+			p[0] += jump; p[1] += jump;
+			break;
+		case 1:
+			p[0] += jump; p[1] -= jump;
+			break;
+		case 2:
+			p[0] -= jump; p[1] += jump;
+			break;
+		case 3:
+			p[0] -= jump; p[1] -= jump;
+			break;
+		}
+		clip(maxx, maxy);
+		eat(map);
 	}
-	clip(maxx, maxy);
-	eat(map);
 }

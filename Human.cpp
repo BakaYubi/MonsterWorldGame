@@ -6,10 +6,10 @@ void Human::move(int** map, int maxx, int maxy) {
 	if (_kbhit()) {
 		char ch = getDirKey();
 		
-		if (ch == Left) x--;
-		else if (ch == Right) x++;
-		else if (ch == Up) y--;
-		else if (ch == Down) y++;
+		if (ch == Left) p[0]--;
+		else if (ch == Right) p[0]++;
+		else if (ch == Up) p[1]--;
+		else if (ch == Down) p[1]++;
 		else return;
 
 		clip(maxx, maxy);
@@ -19,10 +19,10 @@ void Human::move(int** map, int maxx, int maxy) {
 
 void Tuman::moveHuman(int** map, int maxx, int maxy, char ch) {
 
-	if (ch == 'a' || ch == Left) x--;
-	else if (ch == 'd' || ch == Right) x++;
-	else if (ch == 'w' || ch == Up) y--;
-	else if (ch == 's' || ch == Down) y++;
+	if (ch == 'a' || ch == Left) p[0]--;
+	else if (ch == 'd' || ch == Right) p[0]++;
+	else if (ch == 'w' || ch == Up) p[1]--;
+	else if (ch == 's' || ch == Down) p[1]++;
 	else return;
 
 	clip(maxx, maxy);
