@@ -70,7 +70,7 @@ void MonsterWorld::play(int maxwalk, int wait) {
 	cerr << " 엔터를 누르세요...";
 	getchar();
 	for (int i = 0; i < maxwalk; i++) {
-		for (int k = 0; k < nMon - 2; k++) {
+		for (int k = 0; k < nMon - 1; k++) {
 			//	mon[k].move(map, xMax, yMax);
 			pMon[k]->move(world.Data(), xMax, yMax);
 		}
@@ -81,7 +81,7 @@ void MonsterWorld::play(int maxwalk, int wait) {
 				((Tuman *)(pMon[nMon - 1]))->moveHuman(world.Data(), xMax, yMax, ch);
 			}
 			else {
-				((Tuman *)(pMon[nMon - 2]))->moveHuman(world.Data(), xMax, yMax, ch);
+				//((Tuman *)(pMon[nMon - 2]))->moveHuman(world.Data(), xMax, yMax, ch);
 			}
 		}
 		nMove++;
@@ -101,7 +101,7 @@ void MonsterWorld::checkEnergy() {
 			if (i != (nMon - 3)) {
 				pMon[i] = pMon[nMon - 3];
 			}
-			pMon[nMon - 3] = pMon[nMon - 2];
+			//pMon[nMon - 3] = pMon[nMon - 2];
 			pMon[nMon - 2] = pMon[nMon - 1];
 			nMon--;
 		}

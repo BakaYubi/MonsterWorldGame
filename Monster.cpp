@@ -46,9 +46,10 @@ void Monster::move(int** map, int maxx, int maxy) {
 		case 5: p[0]--; p[1]++; break;
 		case 6: p[0]--; break;
 		case 7: p[0]--; p[1]--; break;
-		}
+		
 		clip(maxx, maxy);
 		eat(map);
+		}
 	}
 }
 
